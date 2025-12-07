@@ -959,24 +959,26 @@ p {
 .termContainer p {
   margin-bottom: 5px;
 }
-
-/* --- Locale selector tweaks --- */
+/* Locale selector balanced sizing */
 .localeSelector {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem; /* smaller spacing so text fits better */
 }
 
 .localeSelector h3 {
-  font-size: 0.9rem;          /* label: Locale: / Langue: / 语言： */
+  font-size: 0.85rem;   /* slightly smaller so “Langue :” stays on one line */
   margin: 0;
+  white-space: nowrap;  /* prevents the label from wrapping */
 }
 
 .localeSelector #locale {
-  min-width: 180px;           /* enough for English (USA) & Français (FR) */
-  font-size: 0.85rem;         /* slightly smaller so long names fit */
-  padding: 4px 10px;
+  min-width: 155px;     /* enough for Français (FR) without pushing layout */
+  font-size: 0.8rem;    /* smaller text so it fits better */
+  padding: 3px 6px;     /* reduced padding to reduce width */
   box-sizing: border-box;
 }
+
+
 
 /*# sourceMappingURL=style.css.map */
