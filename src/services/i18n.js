@@ -43,10 +43,12 @@ const i18n = {
         return `${locale}/terms.html`; //$NON-NLS-L$ 
     },
     //format date accoring to locale
-    formatDate: (date) => {
-        var options = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
-        return new Intl.DateTimeFormat([locale, 'en-US'], options).format(date); //$NON-NLS-L$
-    }
+   // format date according to locale (numeric, locale decides order)
+formatDate: (date) => {
+    const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+    return new Intl.DateTimeFormat(locale, options).format(date);
+}
+
 }
 
 //used to determine the correct currency symbol
