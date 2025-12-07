@@ -979,6 +979,17 @@ p {
   box-sizing: border-box;
 }
 
+#greetingText {
+  font-size: 1.1rem;
+  line-height: 1.1;
+  margin: 0;
+  max-width: 9rem;      /* constrain width so the lines are shorter */
+  text-align: right;    /* looks nice next to the cart */
+}
+header {
+  padding-bottom: 6px;   /* small gap between header and nav */
+}
+
 
 
 /*# sourceMappingURL=style.css.map */
