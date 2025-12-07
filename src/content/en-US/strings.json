@@ -113,11 +113,8 @@
     "LocaleSelector": {
         "localeLabel": "Locale: ",
         "localeUS": "English (USA)",
-        "localeNL": "Dutch (NLD)",
-        "localeCN": "Chinese (PRC)",
-        "localeDE": "German (FRG)",
-        "LocaleTW": "Chinese (TW)",
-        "Locale419": "Spanish (LatAm)"  
+        "localeFR": "French (FR)",
+        "localeCN": "Chinese (PRC)"  
     },
     "Special": "Special"
 }
