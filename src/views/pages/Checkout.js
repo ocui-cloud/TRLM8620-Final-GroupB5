@@ -232,21 +232,28 @@ var deleteItem = (e) => {
 
 //handle order placement
 var placeOrder = () => {
+    // 1. Create the Order object with total + current date
     let order = new Order(total, new Date()); //$NON-NLS-L$
+
+    // 2. Save it to localStorage and to the in-memory history
     saveOrder(order);
     orderHistory.unshift(order);
-    //zero out the qty for each item before removing it
+
+    // 3. Zero out and clear the shopping cart
     for (let key in shoppingCart) {
         let product = shoppingCart[key];
         product.qty = 0;
         delete shoppingCart[key];
-        console.log(shoppingCart);
     }
     saveCart();
-    //construct success message
+
+    // 4. Success message
     let message = i18n.getString("Checkout", "successMessage");
     window.alert(message);
-    location.href = "./#/history";
+
+    // 5. Navigate via SPA router to history (no full reload)
+    location.hash = "/history";
+    router();
 }
 
 let saveOrder = (newOrder) => {
