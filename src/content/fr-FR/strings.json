@@ -102,7 +102,9 @@
         "dateHeading": "Date",
         "numberHeading": "Numéro de commande",
         "totalHeading": "Total",
-        "statusHeading": "Statut"
+        "statusHeading": "Statut",
+        "statusDelivered": "Livré"
+
     },
     "Error404": {
         "errorMessage": "Erreur 404 : page introuvable."

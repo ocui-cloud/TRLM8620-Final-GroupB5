@@ -102,7 +102,9 @@
         "dateHeading": "日期",
         "numberHeading": "订单编号",
         "totalHeading": "总计",
-        "statusHeading": "状态"
+        "statusHeading": "状态",
+        "statusDelivered": "已送达"
+
     },
     "Error404": {
         "errorMessage": "404 错误：页面未找到。"
