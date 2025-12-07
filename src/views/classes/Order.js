@@ -40,8 +40,8 @@ class Order {
         if(diffDays < 4) {
             return i18n.getString("Order", "statusShipped");
         }
-        else{
-            return i18n.getString("Order","statusDelivered");
+        else {
+            return i18n.getString("Order", "statusDelivered") || "Delivered";
         }
     }
 
