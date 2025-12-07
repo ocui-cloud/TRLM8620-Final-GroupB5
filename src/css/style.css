@@ -960,4 +960,23 @@ p {
   margin-bottom: 5px;
 }
 
+/* --- Locale selector tweaks --- */
+.localeSelector {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.localeSelector h3 {
+  font-size: 0.9rem;          /* label: Locale: / Langue: / 语言： */
+  margin: 0;
+}
+
+.localeSelector #locale {
+  min-width: 180px;           /* enough for English (USA) & Français (FR) */
+  font-size: 0.85rem;         /* slightly smaller so long names fit */
+  padding: 4px 10px;
+  box-sizing: border-box;
+}
+
 /*# sourceMappingURL=style.css.map */
