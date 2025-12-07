@@ -119,7 +119,7 @@ let Checkout = {
                                     </select>
                                     <h3>/</h3>
                                     <select id="expDateYear" name="expDateYear" class="checkoutInput">
-                                        <option value="" disabled selected hidden>YYYY</option>
+                                        <option value="" disabled selected hidden>YY</option>
                                         `;
         for (let i = 1; i <= 12; i++) {
             var formattedNumber = ("0" + i).slice(-2); //$NON-NLS-L$
