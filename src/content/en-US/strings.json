@@ -116,9 +116,9 @@
     },
     "LocaleSelector": {
         "localeLabel": "Locale: ",
-        "localeUS": "English (USA)",
-        "localeFR": "French (FR)",
-        "localeCN": "Chinese (PRC)"  
+        "localeUS": "English(USA)",
+        "localeFR": "French(FR)",
+        "localeCN": "Chinese(PRC)"  
     },
     "Special": "Special"
 }
