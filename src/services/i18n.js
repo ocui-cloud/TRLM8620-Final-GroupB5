@@ -29,44 +29,48 @@ const i18n = {
     },
 
     //determine the proper currency format based on locale and return html string
-    formatCurrency: (price, color) => {
-        let converted = convertCurrency(price);
-    
-        // Special Chinese formatting: 4-digit grouping, dot decimal
-        if (locale === 'zh-CN') {
-    // keep two decimals
-    const [rawInt, fracPart] = converted.toFixed(2).split('.');
-    let intPart = rawInt;
-    let sign = '';
+    // determine the proper currency format based on locale and return html string
+formatCurrency: (price, color) => {
+    let converted = convertCurrency(price);
 
-    // handle negatives
-    if (intPart.startsWith('-')) {
-        sign = '-';
-        intPart = intPart.slice(1);
+    // Treat any zh / zh-CN / zh-* locale as Chinese for formatting
+    const isChineseLocale = typeof locale === 'string' && /^zh(\b|-|_)/.test(locale);
+
+    // Special Chinese formatting: 4-digit grouping, dot decimal
+    if (isChineseLocale) {
+        // keep two decimals
+        const [rawInt, fracPart] = Number(converted).toFixed(2).split('.');
+        let intPart = rawInt;
+        let sign = '';
+
+        // handle negatives
+        if (intPart.startsWith('-')) {
+            sign = '-';
+            intPart = intPart.slice(1);
+        }
+
+        // 4-digit grouping from the right: 1008000 -> 100,8000
+        const groups = [];
+        while (intPart.length > 4) {
+            groups.unshift(intPart.slice(-4));
+            intPart = intPart.slice(0, -4);
+        }
+        groups.unshift(intPart);
+
+        const groupedInt = groups.join(',');
+        const formattedCN = `${sign}¥${groupedInt}.${fracPart}`;
+        return `<h4>${formattedCN}</h4>`;
     }
 
-    // 4-digit grouping from the right
-    let groups = [];
-    while (intPart.length > 4) {
-        groups.unshift(intPart.slice(-4));
-        intPart = intPart.slice(0, -4);
-    }
-    groups.unshift(intPart);
+    // Default: rely on Intl for en-US, fr-FR, etc.
+    const formatted = new Intl.NumberFormat(locale || 'en-US', {
+        style: 'currency',
+        currency: currencyMap[locale] || 'USD',
+        useGrouping: true
+    }).format(converted);
 
-    const groupedInt = groups.join(',');
-    const formattedCN = `${sign}¥${groupedInt}.${fracPart}`;
-    return `<h4>${formattedCN}</h4>`;
-}
-    
-        // Default: rely on Intl for en-US, fr-FR, etc.
-        const formatted = new Intl.NumberFormat(locale, {
-            style: 'currency',
-            currency: currencyMap[locale],
-            useGrouping: true
-        }).format(converted);
-    
-        return `<h4>${formatted}</h4>`;
-    },  
+    return `<h4>${formatted}</h4>`;
+},
     //return the locale based link to html file within the 'static' folder
     getHTML: () => {
         return `${locale}/terms.html`; //$NON-NLS-L$ 
