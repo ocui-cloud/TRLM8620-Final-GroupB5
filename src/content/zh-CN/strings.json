@@ -95,8 +95,7 @@
     },
     "Order": {
         "statusProcessing": "处理中",
-        "statusShipped": "已发货",
-        "statusDelivered": "已送达"
+        "statusShipped": "已发货"
     },
     "OrderHistory": {
         "historyTitle": "订单历史",
