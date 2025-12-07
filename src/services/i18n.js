@@ -30,14 +30,43 @@ const i18n = {
 
     //determine the proper currency format based on locale and return html string
     formatCurrency: (price, color) => {
-        let formatted;
         let converted = convertCurrency(price);
-        formatted = new Intl.NumberFormat(locale, { style: 'currency', currency: currencyMap[locale] }).format(converted); //$NON-NLS-L$ 
-        //return the formatted currency within template literal
-        return `<h4>${formatted}</h4>`
+    
+        // Special Chinese formatting: 4-digit grouping, dot decimal
+        if (locale === 'zh-CN') {
+    // keep two decimals
+    const [rawInt, fracPart] = converted.toFixed(2).split('.');
+    let intPart = rawInt;
+    let sign = '';
 
+    // handle negatives
+    if (intPart.startsWith('-')) {
+        sign = '-';
+        intPart = intPart.slice(1);
+    }
 
-    },
+    // 4-digit grouping from the right
+    let groups = [];
+    while (intPart.length > 4) {
+        groups.unshift(intPart.slice(-4));
+        intPart = intPart.slice(0, -4);
+    }
+    groups.unshift(intPart);
+
+    const groupedInt = groups.join(',');
+    const formattedCN = `${sign}¥${groupedInt}.${fracPart}`;
+    return `<h4>${formattedCN}</h4>`;
+}
+    
+        // Default: rely on Intl for en-US, fr-FR, etc.
+        const formatted = new Intl.NumberFormat(locale, {
+            style: 'currency',
+            currency: currencyMap[locale],
+            useGrouping: true
+        }).format(converted);
+    
+        return `<h4>${formatted}</h4>`;
+    },  
     //return the locale based link to html file within the 'static' folder
     getHTML: () => {
         return `${locale}/terms.html`; //$NON-NLS-L$ 
