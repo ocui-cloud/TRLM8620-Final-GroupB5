@@ -95,15 +95,16 @@
     },
     "Order": {
         "statusProcessing": "Processing",
-        "statusShipped": "Shipped"
+        "statusShipped": "Shipped",
+         "statusDelivered": "Delivered"
     },
     "OrderHistory": {
         "historyTitle": "Order History",
         "dateHeading": "Date",
         "numberHeading": "Order Number",
         "totalHeading": "Total",
-        "statusHeading": "Status",
-        "statusDelivered": "Delivered"
+        "statusHeading": "Status"
+       
 
     },
     "Error404": {
